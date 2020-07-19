@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Description 
+ * Description Bean声明周期
  * Created by wells on 2020-07-19 09:43:06
  */
 
