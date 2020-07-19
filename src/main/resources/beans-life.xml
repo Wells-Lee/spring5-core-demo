@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean生命周期 -->
+<!--    <bean id="order" class="com.wells.demo.ioc.xml.Order" init-method="initMethod" destroy-method="destroyMethod" p:oname="裤子"/>-->
+
+    <!-- 带有处理器的bean生命周期 -->
+    <bean id="animal" class="com.wells.demo.ioc.xml.Animal" init-method="initMethod" destroy-method="destroyMethod" p:aname="小黄鸭"/>
+    <bean id="beanProcess" class="com.wells.demo.ioc.xml.BeanProcess"/>
+</beans>

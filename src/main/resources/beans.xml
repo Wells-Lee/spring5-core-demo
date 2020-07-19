@@ -1,7 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="userDao" class="com.wells.demo.create.bean.factory.UserDao"/>
+    <!-- 使用xml方式创建对象 -->
+    <bean id="userService" class="com.wells.demo.ioc.xml.UserService"/>
+
+    <!-- 使用set方式注入属性 -->
+    <bean id="book" class="com.wells.demo.ioc.xml.Book">
+        <!-- 使用 property 完成属性注入
+            name: 类里面属性名称
+            value: 向属性注入的值
+        -->
+        <property name="bname" value="西游记"/>
+        <property name="bauthor" value="吴承恩"/>
+        <!-- 注入 Null 值 -->
+        <property name="addr">
+            <null/>
+        </property>
+        <!-- 注入特殊符号值 -->
+        <property name="btime">
+            <value><![CDATA[<2020-07-18 22:50:00>]]></value>
+        </property>
+    </bean>
+
+    <!-- 使用有参构造方法注入属性 -->
+    <bean id="user" class="com.wells.demo.ioc.xml.User">
+        <constructor-arg name="name" value="wells"/>
+        <constructor-arg name="age" value="18"/>
+    </bean>
+
+    <!-- 通过p名称空间注入属性 -->
+    <bean id="person" class="com.wells.demo.ioc.xml.Person" p:name="Tom" p:age="18"/>
+
+    <!-- 通过set方法注入自定义bean: 外部创建 -->
+    <bean id="empOut" class="com.wells.demo.ioc.xml.Emp">
+        <property name="ename" value="Jerry"/>
+        <property name="gender" value="男"/>
+        <property name="dept" ref="deptOut"/>
+    </bean>
+
+    <bean id="deptOut" class="com.wells.demo.ioc.xml.Dept">
+        <property name="dname" value="技术部"/>
+    </bean>
+
+    <!-- 通过set方法注入自定义bean: 内部创建 -->
+    <bean id="empIn" class="com.wells.demo.ioc.xml.Emp">
+        <property name="ename" value="Lily"/>
+        <property name="gender" value="女"/>
+        <property name="dept">
+            <bean class="com.wells.demo.ioc.xml.Dept">
+                <property name="dname" value="测试部"/>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- 在注入自定义bean时，注入级联属性，比如：dept的dname -->
+    <bean id="empLinkOne" class="com.wells.demo.ioc.xml.Emp">
+        <property name="ename" value="Tom"/>
+        <property name="gender" value="男"/>
+        <property name="dept" ref="dept"/>
+    </bean>
+    <bean name="dept" class="com.wells.demo.ioc.xml.Dept">
+        <property name="dname" value="安全部"/>
+    </bean>
+
+    <!-- 在注入自定义bean时，注入级联属性，比如：dept的dname -->
+    <bean id="empLinkTwo" class="com.wells.demo.ioc.xml.Emp">
+        <property name="ename" value="Daivd"/>
+        <property name="gender" value="男"/>
+        <property name="dept" ref="dept"/>
+
+        <!-- 需要dept属性的get方法 -->
+        <property name="dept.dname" value="业务部"/>
+    </bean>
+
+    <!-- 注入集合属性 -->
+    <bean id="student" class="com.wells.demo.ioc.xml.Student">
+        <property name="course">
+            <array>
+                <value>线性代数</value>
+                <value>高等数学</value>
+            </array>
+        </property>
+
+        <!-- 注入基本属性集合 -->
+        <property name="books">
+            <list>
+                <value>《SpringBoot编程思想》</value>
+                <value>《SpringCloud微服务实战》</value>
+            </list>
+        </property>
+
+        <property name="teachers">
+            <map>
+                <entry key="大学物理" value="Tom"/>
+                <entry key="高等数学" value="Jerry"/>
+            </map>
+        </property>
+
+        <!-- 注入自定义bean集合 -->
+        <property name="courseList">
+            <list>
+                <ref bean="c1"/>
+                <ref bean="c2"/>
+            </list>
+        </property>
+
+        <property name="friends" ref="friends"/>
+    </bean>
+
+    <bean id="c1" class="com.wells.demo.ioc.xml.Course" p:cname="大学物理"/>
+    <bean id="c2" class="com.wells.demo.ioc.xml.Course" p:cname="编译原理"/>
+
+    <!-- 提取list -->
+    <util:list id="friends">
+        <value>Lily</value>
+        <value>Wells</value>
+    </util:list>
+
+    <!-- FactoryBean -->
+    <bean id="myBean" class="com.wells.demo.ioc.xml.MyBean"/>
 </beans>
