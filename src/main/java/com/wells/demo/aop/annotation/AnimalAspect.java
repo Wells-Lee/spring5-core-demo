@@ -2,6 +2,7 @@ package com.wells.demo.aop.annotation;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
+@Order(0)   // 为切面处理类增加顺序
 public class AnimalAspect {
     @Pointcut(value = "execution(* com.wells.demo.aop.annotation.impl.AniamlServiceImpl.*(..))")
     public void point() {
