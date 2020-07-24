@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Description FactoryBean
+ * Description FactoryBean：返回不同于声明的对象类型
  * Created by wells on 2020-07-19 09:21:56
  */
 
