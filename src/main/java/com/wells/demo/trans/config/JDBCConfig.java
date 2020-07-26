@@ -40,6 +40,9 @@ public class JDBCConfig {
         return dataSource;
     }
 
+    /**
+     * 通过 @Bean 创建的对象实例，在方法参数上的对象实例默认从 Spring 容器中获取
+     */
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource){
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
