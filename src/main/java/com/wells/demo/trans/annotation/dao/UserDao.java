@@ -1,6 +1,5 @@
-package com.wells.demo.trans.dao;
+package com.wells.demo.trans.annotation.dao;
 
-import com.wells.demo.trans.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
