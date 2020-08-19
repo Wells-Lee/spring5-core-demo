@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Created by wells on 2020-07-22 09:36:53
  */
 
-public class BooServiceImpl implements BookService {
+public class BookServiceImpl implements BookService {
     public void delBook() {
         System.out.println("del book in service");
     }

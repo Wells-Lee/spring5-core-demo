@@ -6,7 +6,7 @@
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 创建对象 -->
-    <bean id="bookService" class="com.wells.demo.aop.xml.impl.BooServiceImpl"/>
+    <bean id="bookService" class="com.wells.demo.aop.xml.impl.BookServiceImpl"/>
     <bean id="bookProxy" class="com.wells.demo.aop.xml.BookProxy"/>
 
     <!-- 开启aop代理 -->
@@ -15,7 +15,7 @@
     <!-- aop相关配置 -->
     <aop:config>
         <!-- 配置切入点 -->
-        <aop:pointcut id="p" expression="execution(* com.wells.demo.aop.xml.impl.BooServiceImpl.*(..))"/>
+        <aop:pointcut id="p" expression="execution(* com.wells.demo.aop.xml.impl.BookServiceImpl.*(..))"/>
 
         <!-- 配置切面 -->
         <aop:aspect ref="bookProxy">

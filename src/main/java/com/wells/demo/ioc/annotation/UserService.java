@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 @Service
 
 // 经常用于导入第三方jar包的组件，在 SpringBoot 中用的非常广泛
-@Import(DataSource.class)
+//@Import(DataSource.class)
 public class UserService {
     /**
      * 自动装配的时候:
